@@ -1,0 +1,23 @@
+Notes on design
+
+If incoming audio and video data are recieved as interleaved UDP packets, there is no way to differentiate what is what without adding some overhead data to each packet. This defeats the purpose of UDP.
+Therefore, it seems a better choice to use a seperate port for each UDP task, so as to delegate the task of differentiating audio and video data to the network layer instead of my application layer.
+
+Then I need a server application with a fixed address that can be accessed by any client that can connect two clients to each other.
+
+The client application will require
+	- Audio UDP sender & reciever
+	- Video UDP sender & reciever
+	- Commands TCP sender & reciever
+	- A GUI with controls for hosting or joining a connection
+
+The server application will require
+	- a tcp reciever that sets up udp connections
+	- a ton of udp connections
+
+TO DO:
+	- Client GUI
+	- Client backend (send/recieve tcp and udp)
+	- How to deploy c++ on a linux server
+	- Server tcp handshake and multiple udp connections
+
